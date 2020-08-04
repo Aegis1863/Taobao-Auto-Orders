@@ -17,7 +17,7 @@ def get_time_url():
     if date == '' :
         date='2020-07-20'
     if seconds== '' :
-        secodns='00:00:00.0'
+        seconds='00:00:00.0'
     times=date+' '+seconds+'.0'
     url=str(input('>> 输入商品网页链接：'))
     if url =='':
@@ -38,7 +38,7 @@ def buy(times,url2,train):
     except:
         print('出现错误，您尝试登录的次数过多，被拒绝访问，请关闭程序，一段时间后重试')
     print('暂停运行...')
-    judge=input('>>> 扫码登录完成后按回车\n')
+    input('>>> 扫码登录完成后按回车\n')
     print('继续运行...')
     driver.get(url2)
     print('>>请勿关闭程序和网页\n【现在务必先选好商品款式等】\n选好款式后可以挂机，到抢单时间后将会第一时间点击一次“立即购买”按钮...')
