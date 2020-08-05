@@ -24,7 +24,7 @@ def get_time_url():
         url='https://detail.tmall.com/item.htm?spm=a230r.1.14.1.5cc35102XAIJpL&id=609908639171&ns=1&abbucket=12&tbpm=1'
     return times,url
 
-def buy(times,url2,train):
+def buy(times, url2, train):
     url='https://www.taobao.com/'
     #有IP池就用以下注释的方法代替现有方法
     #chromeOptions = webdriver.ChromeOptions()
@@ -38,18 +38,18 @@ def buy(times,url2,train):
     except:
         print('出现错误，您尝试登录的次数过多，被拒绝访问，请关闭程序，一段时间后重试')
     print('暂停运行...')
-    input('>>> 扫码登录完成后按回车\n')
+    input('>>> 扫码登录完成后回到程序按回车，等待中...\n')
     print('继续运行...')
     driver.get(url2)
-    print('>>请勿关闭程序和网页\n【现在务必先选好商品款式等】\n选好款式后可以挂机，到抢单时间后将会第一时间点击一次“立即购买”按钮...')
+    print('>> 请选择款式并回到程序按回车，等待中...')
+    driver.find_element_by_xpath('//*[(@id = "J_LinkBuy")]').click()
+    print('***>已点击购买，到时间后自动提交订单\n')
     while True:
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         endtime = datetime.datetime.strptime(times , '%Y-%m-%d %H:%M:%S.%f')
         nowtime = datetime.datetime.strptime(now , '%Y-%m-%d %H:%M:%S.%f')
         if nowtime > endtime:
             try:
-                driver.find_element_by_xpath('//*[(@id = "J_LinkBuy")]').click()
-                print('***>已点击购买\n')
                 if train == 2 :
                     driver.find_element_by_xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "go-btn", " " ))]').click()
                     print('***>已下订单\n')
@@ -58,7 +58,7 @@ def buy(times,url2,train):
                 print('可能出现网络问题，请尽快手动抢单')    
                 break
         else:
-            period=endtime-nowtime
+            period = endtime - nowtime
             print('>>距离抢单还有 %f 秒\n'%period.total_seconds(),end='\r')
 
 if __name__ == '__main__':
