@@ -7,7 +7,6 @@ Created on Sat Jul 18 20:27:53 2020
 
 
 from selenium import webdriver
-import time
 import datetime
 def get_time_url():
     input('>> 使用方法：先将你的商品网页链接复制下来，以便后续输入\n中途需要扫码登录，登录完成后回到程序，跟随提示按回车\n***抢到单后会进入支付页面，切勿关闭程序，会导致浏览器一起关闭***\n>>阅读完毕按回车即可继续...')
@@ -52,7 +51,7 @@ def buy(times, url2, train):
             print('***>已点击购买，到时间后自动提交订单\n')
             try:
                 if train == 2 :
-                    time.sleep(1)
+                    driver.implicitly_wait(30)
                     driver.find_element_by_xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "go-btn", " " ))]').click()
                     print('***>已下订单\n')
                 break
