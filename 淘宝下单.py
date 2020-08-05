@@ -42,13 +42,14 @@ def buy(times, url2, train):
     print('继续运行...')
     driver.get(url2)
     print('>> 请选择款式并回到程序按回车，等待中...')
-    driver.find_element_by_xpath('//*[(@id = "J_LinkBuy")]').click()
-    print('***>已点击购买，到时间后自动提交订单\n')
     while True:
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         endtime = datetime.datetime.strptime(times , '%Y-%m-%d %H:%M:%S.%f')
         nowtime = datetime.datetime.strptime(now , '%Y-%m-%d %H:%M:%S.%f')
         if nowtime > endtime:
+            driver.refresh()
+            driver.find_element_by_xpath('//*[(@id = "J_LinkBuy")]').click()
+            print('***>已点击购买，到时间后自动提交订单\n')
             try:
                 if train == 2 :
                     driver.find_element_by_xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "go-btn", " " ))]').click()

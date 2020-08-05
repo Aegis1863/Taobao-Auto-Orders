@@ -35,9 +35,11 @@ def buy(times,url,train):
             try:
                 if train == 2 :
                     try:
+                        driver.refresh()
                         driver.find_element_by_xpath('//*[@id="submitBlock_1"]/div/div/div/div[3]/div[2]/span').click()
                         print('***>已下订单\n')
                     except:
+                        driver.refresh()
                         driver.find_element_by_xpath('//*[@id="submitOrder_1"]/div[2]/div[2]/div/span').click()
                         print('***已下订单\n')
                 break
