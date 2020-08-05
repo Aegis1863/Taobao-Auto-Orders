@@ -52,6 +52,7 @@ def buy(times, url2, train):
             print('***>已点击购买，到时间后自动提交订单\n')
             try:
                 if train == 2 :
+                    time.sleep(1)
                     driver.find_element_by_xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "go-btn", " " ))]').click()
                     print('***>已下订单\n')
                 break
